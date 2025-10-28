@@ -224,3 +224,81 @@ img{max-width:100%;display:block}
   .profile{ position: static; flex-direction: row; gap: 12px; margin: 12px 0 0; }
   .hero-card{ transform: none; margin-top: 16px; }
 }
+/* ======= GLOBAL SAFE ======= */
+html, body { overflow-x: hidden; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* ======= MOBILE (<=600px) – snug + floating hero-card ======= */
+@media (max-width: 600px){
+
+  /* uži layout, bez razvaljivanja */
+  .container { width: 92% !important; margin-inline: auto; }
+
+  /* hero spacing i tipografija */
+  .hero { padding: 72px 0 28px !important; position: relative; }
+  .hero-copy h1{
+    font-size: clamp(28px, 9vw, 36px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: .2px;
+  }
+  .hero-copy p{
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+  }
+
+  /* dugmad – cijela širina, lakše tapkanje */
+  .cta-row{ display: flex; flex-direction: column; gap: 10px; }
+  .btn{ width: 100%; text-align: center; padding: 12px 14px; }
+
+  /* profil – više NE pluta; stoji uredno iznad kartice */
+  .profile{
+    position: static !important;
+    display: flex; gap: 12px; align-items: center;
+    margin: 14px 0 10px !important;
+  }
+  .profile-img{ width: 72px !important; height: 72px !important; border-width: 3px; }
+  .profile-name{ font-size: 16px !important; }
+
+  /* >>> “PLUTAJUĆA” HERO KARTICA (sticky) <<< */
+  .hero-card{
+    position: sticky;          /* ostaje “zalijepljena” dok skrolaš */
+    top: 64px;                 /* visina ispod navigacije; po potrebi 56–80px */
+    width: 100% !important;
+    margin-top: 12px !important;
+    padding: 14px !important;
+    transform: none !important;     /* gasimo desktop pomak */
+    backdrop-filter: saturate(130%) blur(6px);
+    -webkit-backdrop-filter: saturate(130%) blur(6px);
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    z-index: 5;
+    border-radius: 14px;
+  }
+
+  /* čipovi – lijepo prelamanje u više redova */
+  .stack{
+    display: flex; flex-wrap: wrap; gap: 8px !important;
+  }
+  .stack .badge{ padding: 8px 10px; font-size: 14px; }
+
+  /* “Selected Work” u jednu kolonu, bez razvlačenja */
+  .case{
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    padding: 14px !important;
+  }
+  .case .cover img{ border-radius: 10px; }
+
+  /* about/kontakt kartice ako postoje */
+  .about-cards{ grid-template-columns: 1fr !important; gap: 12px !important; }
+}
+
+/* ======= TABLET (600–900px) – isto, ali mrvu šire ======= */
+@media (min-width: 601px) and (max-width: 900px){
+  .container{ width: 92% !important; }
+  .hero{ padding: 84px 0 36px !important; }
+  .profile{ position: static !important; margin: 12px 0 8px; display: flex; gap: 14px; }
+  .profile-img{ width: 84px; height: 84px; }
+  .hero-card{ position: sticky; top: 72px; transform: none !important; margin-top: 14px; }
+  .stack{ flex-wrap: wrap; gap: 10px; }
+  .case{ grid-template-columns: 1fr; }
+}
